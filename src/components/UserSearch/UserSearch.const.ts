@@ -1,1 +1,1 @@
-export const SEARCH_INPUT_PLACEHOLDER = "Search...";
+export const SEARCH_INPUT_PLACEHOLDER = "Search Name...";
