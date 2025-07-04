@@ -1,13 +1,13 @@
 import { useFetchApi } from "../../hooks/useFetchApi.ts";
 import type { User } from "../../types/user.ts";
 import { UserSearch } from "../UserSearch/UserSearch.tsx";
-import { TITLE, USERS_ENDPOINT } from "./UserList.const.ts";
+import { ERROR_TEXT, NO_RESULTS_TEXT, TITLE, USERS_ENDPOINT } from "./UserList.const.ts";
 import { UserCard } from "../UserCard/UserCard.tsx";
 import { useSearchFilter } from "../../hooks/useSearchFilter.ts";
 import { searchUserName } from "../UserSearch/UserSearch.utils.ts";
 import { StyledUserList as Styled } from "./UserList.styled.ts";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner.tsx";
-import { ErrorNotice } from "../ErrorNotice/ErrorNotice.tsx";
+import { Notice } from "../Notice/Notice.tsx";
 
 export const UserList = () => {
   const { isLoading, data, error } = useFetchApi<User[]>(USERS_ENDPOINT);
@@ -25,12 +25,13 @@ export const UserList = () => {
         {isLoading ? (
           <LoadingSpinner />
         ) : error ? (
-          <ErrorNotice />
+          <Notice text={ERROR_TEXT} isError />
         ) : (
           <Styled.ResultsList>
             {filteredData.map(({ name, phone, company }: User) => (
               <UserCard name={name} phone={phone} companyName={company.name} />
             ))}
+            {data && data?.length && !filteredData.length && <Notice text={NO_RESULTS_TEXT} />}
           </Styled.ResultsList>
         )}
       </Styled.Results>
