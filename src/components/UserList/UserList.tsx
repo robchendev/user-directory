@@ -5,6 +5,7 @@ import { USERS_ENDPOINT } from "./UserList.const.ts";
 import { UserCard } from "../UserCard/UserCard.tsx";
 import { useSearchFilter } from "../../hooks/useSearchFilter.ts";
 import { searchUserName } from "../UserSearch/UserSearch.utils.ts";
+import { StyledUserList as Styled } from "./UserList.styled.ts";
 
 export const UserList = () => {
   const { isLoading, data, error } = useFetchApi<User[]>(USERS_ENDPOINT);
@@ -15,7 +16,7 @@ export const UserList = () => {
   };
 
   return (
-    <div>
+    <Styled.Wrapper>
       <UserSearch onInput={onSearchInput} search={search} />
       <div>
         {isLoading ? (
@@ -29,6 +30,6 @@ export const UserList = () => {
           </>
         )}
       </div>
-    </div>
+    </Styled.Wrapper>
   );
 };
