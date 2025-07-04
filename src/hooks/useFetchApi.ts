@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-export const useFetchApi = (url: string) => {
+export const useFetchApi = <T>(url: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState<T | null>();
   const [error, setError] = useState(false);
 
   const delay = (milliseconds: number) => {
