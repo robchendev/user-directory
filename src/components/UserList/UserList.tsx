@@ -1,7 +1,7 @@
 import { useFetchApi } from "../../hooks/useFetchApi.ts";
 import type { User } from "../../types/user.ts";
 import { UserSearch } from "../UserSearch/UserSearch.tsx";
-import { USERS_ENDPOINT } from "./UserList.const.ts";
+import { TITLE, USERS_ENDPOINT } from "./UserList.const.ts";
 import { UserCard } from "../UserCard/UserCard.tsx";
 import { useSearchFilter } from "../../hooks/useSearchFilter.ts";
 import { searchUserName } from "../UserSearch/UserSearch.utils.ts";
@@ -19,7 +19,7 @@ export const UserList = () => {
 
   return (
     <Styled.Wrapper>
-      <Styled.Title>User Search</Styled.Title>
+      <Styled.Title>{TITLE}</Styled.Title>
       {!error && <UserSearch onInput={onSearchInput} search={search} />}
       <Styled.Results>
         {isLoading ? (
