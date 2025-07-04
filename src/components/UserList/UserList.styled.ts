@@ -15,4 +15,12 @@ export const StyledUserList = {
     flex: 1;
     overflow: auto;
   `,
+  ResultsList: styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  `,
 };

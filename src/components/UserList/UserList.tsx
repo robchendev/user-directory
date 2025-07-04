@@ -23,9 +23,11 @@ export const UserList = () => {
           <div>Loading</div>
         ) : (
           <>
-            {filteredData.map(({ name, phone, company }: User) => (
-              <UserCard name={name} phone={phone} companyName={company.name} />
-            ))}
+            <Styled.ResultsList>
+              {filteredData.map(({ name, phone, company }: User) => (
+                <UserCard name={name} phone={phone} companyName={company.name} />
+              ))}
+            </Styled.ResultsList>
             {error && <div>An error occurred</div>}
           </>
         )}
