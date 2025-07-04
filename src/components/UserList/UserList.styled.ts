@@ -11,6 +11,10 @@ export const StyledUserList = {
     height: calc(100vh - 40px);
     gap: 16px;
   `,
+  Title: styled.h1`
+    font-size: 24px;
+    text-align: center;
+  `,
   Results: styled.div`
     flex: 1;
     overflow: auto;

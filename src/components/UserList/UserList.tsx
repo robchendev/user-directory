@@ -7,6 +7,7 @@ import { useSearchFilter } from "../../hooks/useSearchFilter.ts";
 import { searchUserName } from "../UserSearch/UserSearch.utils.ts";
 import { StyledUserList as Styled } from "./UserList.styled.ts";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner.tsx";
+import { ErrorNotice } from "../ErrorNotice/ErrorNotice.tsx";
 
 export const UserList = () => {
   const { isLoading, data, error } = useFetchApi<User[]>(USERS_ENDPOINT);
@@ -18,11 +19,13 @@ export const UserList = () => {
 
   return (
     <Styled.Wrapper>
-      <UserSearch onInput={onSearchInput} search={search} />
+      <Styled.Title>User Search</Styled.Title>
+      {!error && <UserSearch onInput={onSearchInput} search={search} />}
       <Styled.Results>
-        {!error && <div>An error occurred</div>}
         {isLoading ? (
           <LoadingSpinner />
+        ) : error ? (
+          <ErrorNotice />
         ) : (
           <Styled.ResultsList>
             {filteredData.map(({ name, phone, company }: User) => (
