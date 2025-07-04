@@ -5,8 +5,12 @@ export const useFetchApi = <T>(url: string) => {
   const [data, setData] = useState<T | null>();
   const [error, setError] = useState(false);
 
-  const delay = (milliseconds: number) => {
-    return new Promise((resolve) => setTimeout(resolve, Math.max(milliseconds, 0)));
+  const waitAtLeast = async (startTime: number, minimumDuration: number) => {
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = minimumDuration - elapsedTime;
+    if (remainingTime) {
+      await new Promise((resolve) => setTimeout(resolve, minimumDuration));
+    }
   };
 
   useEffect(() => {
@@ -17,11 +21,10 @@ export const useFetchApi = <T>(url: string) => {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        const elapsedTime = Date.now() - startTime;
-        const remainingTime = 500 - elapsedTime;
-        await delay(remainingTime);
+        await waitAtLeast(startTime, 500);
         setData(json);
       } catch (e) {
+        await waitAtLeast(startTime, 500);
         setError(true);
         console.error(e);
       }
