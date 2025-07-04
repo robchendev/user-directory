@@ -1,8 +1,8 @@
 import { useFetchApi } from "../../hooks/useFetchApi.ts";
 import type { User } from "../../types/user.ts";
-import { USERS_ENDPOINT } from "./UserSearch.const.ts";
+import { USERS_ENDPOINT } from "./UserList.const.ts";
 
-export const UserSearch = () => {
+export const UserList = () => {
   const { isLoading, data, error } = useFetchApi(USERS_ENDPOINT);
 
   return (
