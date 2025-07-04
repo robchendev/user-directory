@@ -31,7 +31,7 @@ export const UserList = () => {
             {filteredData.map(({ name, phone, company }: User) => (
               <UserCard name={name} phone={phone} companyName={company.name} />
             ))}
-            {data && data?.length && !filteredData.length && <Notice text={NO_RESULTS_TEXT} />}
+            {data?.length && !filteredData.length && search !== "" && <Notice text={NO_RESULTS_TEXT} />}
           </Styled.ResultsList>
         )}
       </Styled.Results>
