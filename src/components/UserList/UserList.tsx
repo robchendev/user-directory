@@ -18,7 +18,7 @@ export const UserList = () => {
   return (
     <Styled.Wrapper>
       <UserSearch onInput={onSearchInput} search={search} />
-      <div>
+      <Styled.Results>
         {isLoading ? (
           <div>Loading</div>
         ) : (
@@ -29,7 +29,7 @@ export const UserList = () => {
             {error && <div>An error occurred</div>}
           </>
         )}
-      </div>
+      </Styled.Results>
     </Styled.Wrapper>
   );
 };
