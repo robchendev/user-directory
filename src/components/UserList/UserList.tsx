@@ -21,6 +21,7 @@ export const UserList = () => {
     <Styled.Wrapper>
       <Styled.Title>{TITLE}</Styled.Title>
       {!error && <UserSearch onInput={onSearchInput} search={search} />}
+      <button onClick={() => setSearch("")}>Clear Search</button>
       <Styled.Results>
         {isLoading ? (
           <LoadingSpinner />
@@ -28,8 +29,8 @@ export const UserList = () => {
           <Notice text={ERROR_TEXT} isError />
         ) : (
           <Styled.ResultsList>
-            {filteredData.map(({ name, phone, company }: User) => (
-              <UserCard name={name} phone={phone} companyName={company.name} />
+            {filteredData.map(({ name, phone, company }: User, index) => (
+              <UserCard key={index} name={name} phone={phone} companyName={company.name} />
             ))}
             {data?.length && !filteredData.length && search !== "" && <Notice text={NO_RESULTS_TEXT} />}
           </Styled.ResultsList>
